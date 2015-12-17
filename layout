@@ -1,0 +1,63 @@
+bilz
+
+---------------------------------------
+
+product(model) :
+		id
+		name
+		price
+		
+	functions:(controller)
+		adding_product
+		remove_product
+		update_product
+		find_product
+
+bill (model):
+		id
+		customer_id
+		total_amount
+		product_ids
+	
+	functions:(controller)
+		storing_bill
+		finding_bill
+		printing_bill
+	
+	
+customer (model):
+		id
+		name
+		address
+		contact-number
+	functions: (controller)
+		adding_customer
+		remove_customer
+		update_customer_details
+		
+Bill-items (model)
+		id
+		bill_id
+		product_id
+		quantity
+		total_amount
+		discount_amount
+		payble_amount
+	function:(controller)
+		add_item
+		remove_item
+		change_quantity
+		
+
+======================================================================
+Relations 
+
+	User -> Bill -> Product
+
+	bill->belogsTo(user)
+	User -> hasMany('bills')
+	Bill -> hasmany('bill-items')
+	bill-item->hasOne('product')
+	
+
+		
