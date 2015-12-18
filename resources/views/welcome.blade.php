@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">BILL<span style="color:#ff0000;">z</span></div>
             </div>
         </div>
     </body>
