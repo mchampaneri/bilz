@@ -1,0 +1,35 @@
+html,
+body{
+  height: 100%;
+}
+
+body{
+  background-color:#f2e7c6;  
+}
+
+
+ul{
+    list-style: none;
+}
+
+
+li{
+    display: inline-block;
+    list-style: none;
+}
+
+/****************************** SPECIAL CLASSES ***********************/
+
+/*****  title is used for the Title of Billz App ********/
+.title{
+  font-size: 120px;
+  margin-top: 15%;
+  font-family: 'lato','san-serif';
+  letter-spacing: 15px;
+  transition:0.5s;
+}
+
+.title:hover{
+  letter-spacing: 50px;
+  text-shadow: 2px 2px 3px #000;
+}

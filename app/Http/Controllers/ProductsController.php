@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use App\Product;
+use Mail;
+use View;
 
 class ProductsController extends Controller
 {
@@ -18,9 +19,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return $products;
-        
+        $products = Product::all();       
+        return $products;     
     }
 
     /**
@@ -42,15 +42,35 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         /** Recive and trim the Data **/
-        $products = new Products;
+        $products = new Product;
         $products->name = $request->name;
         $products->price = $request->price;
 
-        if( $products->save() )
-            return $products->name."was added to the database";
-    
-        return " Something happen wrong durring adding the product ".$product->name;
+
+
+        if( $products->save() )  
+            if($request->ajax())
+            {
+                 return $products->name."was added to the database";  
+            }
+            else
+            { 
+                 return redirect()->to('/web/products');
+            }
+        else
+            if($request->ajax())
+            {
+                return " Something happen wrong durring adding the product ".$product->name;
+            }
+            else
+            { 
+                 return view('products');
+            }
+
+
+             
     }
+
 
     /**
      * Display the specified resource.
@@ -112,5 +132,14 @@ class ProductsController extends Controller
 
         return  " Something go wrong during the deletion of product".$name;
     }
-   
-}
+
+    public function mail_list()    {
+        
+        $products = Product::all();
+
+         Mail::send('mail.product_alert',['products'=> $products ],function ($m) {
+                    $m->from('hello@bilz.com', 'Your Application');
+                    $m->to('m.champaneri.20@gmail.com', 'Manish')->subject('Curren Product List');
+                });
+    }
+   }
